@@ -1,0 +1,37 @@
+/**
+ * 
+ */
+var expenseFileFlag =false;
+function expenseUp(){
+	
+	check_ProgramBill();
+	if(expenseFileFlag){
+		
+		$("#ExcelUpForm").submit();
+	}
+}
+
+function check_ProgramBill(){
+	var filepath = $("input[name='ProjectBill']").val();
+    var extStart = filepath.lastIndexOf(".");//获取后缀名位置
+    var ext = filepath.substring(extStart, filepath.length).toUpperCase();//提取后缀名 不区分大小写
+   
+    if (ext != ".XLS" && ext != ".XLSX")
+    	{
+    	expenseFileFlag=false;
+    	$("#inputProgramBill").attr("class", "form-group has-error has-feedback");
+		$("#ProgramBillSuccess").css("visibility", "hidden");
+		$("#ProgramBillError").css("visibility", "");
+		$("#ProgramBillMessage").text("");
+    	}
+    else {
+    	expenseFileFlag=true;
+    	
+    	$("#inputProgramBill").attr("class", "form-group has-success has-feedback");
+		$("#ProgramBillSuccess").css("visibility", "");
+		$("#ProgramBillError").css("visibility", "hidden");
+		$("#ProgramBillMessage").text("");
+    	
+    }
+	
+}

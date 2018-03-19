@@ -1,0 +1,86 @@
+ /**
+ * 
+ */
+var programNoFlag = false;
+var expenseFileFlag = false;
+var expensePictureFlag = false;
+
+function expenseUp(){
+	check_ProgramName1();
+	check_ProgramBill();
+	check_ProgramPicture();
+	if(programNoFlag && expenseFileFlag && expensePictureFlag){
+		
+		$("#expensefileUpForm").submit();
+	}
+}
+function check_ProgramName1() {
+	if($("#ProgramName1").val() == "" || $("#ProgramName1").val() == null) {
+		programNoFlag = false;
+		$("#inputProgramName1").attr("class", "form-group has-error has-feedback");
+		$("#ProgramName1Success").css("visibility", "hidden");
+		$("#ProgramName1Error").css("visibility", "");
+		$("#ProgramName1Message").text("项目名称不能为空！");
+	} else {
+		programNoFlag = true;
+			$("#inputProgramName1").attr("class", "form-group has-success has-feedback");
+			$("#ProgramName1Success").css("visibility", "");
+			$("#ProgramName1Error").css("visibility", "hidden");
+			$("#ProgramName1Message").text("");
+		} 
+}
+function check_ProgramBill(){
+	var filepath = $("input[name='ProjectBill']").val();
+    var extStart = filepath.lastIndexOf(".");//获取后缀名位置
+    var ext = filepath.substring(extStart, filepath.length).toUpperCase();//提取后缀名 不区分大小写
+   
+    if (ext != ".XLS" && ext != ".XLSX")
+    	{
+    	expenseFileFlag=false;
+    	$("#inputProgramBill").attr("class", "form-group has-error has-feedback");
+		$("#ProgramBillSuccess").css("visibility", "hidden");
+		$("#ProgramBillError").css("visibility", "");
+		$("#ProgramBillMessage").text("");
+    	}
+    else {
+    	expenseFileFlag=true;
+    	
+    	$("#inputProgramBill").attr("class", "form-group has-success has-feedback");
+		$("#ProgramBillSuccess").css("visibility", "");
+		$("#ProgramBillError").css("visibility", "hidden");
+		$("#ProgramBillMessage").text("");
+    	
+    }
+	
+}
+function check_ProgramPicture(){
+	var filepath = $("input[name='projectPicture']").val();
+	var files= $("input[name='projectPicture']").prop('files');
+	$("#fileNumber").val(files.length+1);
+    var extStart = filepath.lastIndexOf(".");//获取后缀名位置
+    var ext = filepath.substring(extStart, filepath.length).toUpperCase();//提取后缀名 不区分大小写
+   
+    if (ext != ".JPEG" && ext != ".BMP" && ext != ".JPG")
+    	{
+    	expensePictureFlag=false;
+    	$("#inputProgramPicture").attr("class", "form-group has-error has-feedback");
+		$("#ProgramPictureSuccess").css("visibility", "hidden");
+		$("#ProgramPictureError").css("visibility", "");
+		$("#ProgramPictureMessage").text("");
+    	}
+    else {
+    	expensePictureFlag=true;
+    	
+    	$("#inputProgramPicture").attr("class", "form-group has-success has-feedback");
+		$("#ProgramPictureSuccess").css("visibility", "");
+		$("#ProgramPictureError").css("visibility", "hidden");
+		$("#ProgramPictureMessage").text("");
+    	
+    }
+	
+}
+function upExpenseFile(obj){
+	var tds=$(obj).parent().parent().find('td');
+	$('#ProgramName1').val(tds.eq(1).text());
+	$('#expense').modal('show');	
+}

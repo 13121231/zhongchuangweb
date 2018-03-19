@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c3p0-config>
+	<default-config>
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="jdbcUrl">jdbc:mysql://localhost:3306/teammanager?characterEncoding=UTF-8</property>
+		<property name="user">root</property>
+		<property name="password">123456</property>
+		<property name="acquireIncrement">20</property>
+		<property name="initialPoolSize">20</property>
+		<property name="minPoolSize">10</property>
+		<property name="maxPoolSize">30</property>
+		<!--最大空闲时间，10秒内未使用则连接被丢弃。若为0则永不丢弃。默认值: 0 -->   
+        <property name="maxIdleTime">10</property>
+	</default-config>
+	
+	<named-config name="zcw">
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="jdbcUrl">jdbc:mysql://localhost:3306/zhongchuangweb?characterEncoding=UTF-8</property>
+		<property name="user">root</property>
+		<property name="password">123456</property>
+		<property name="acquireIncrement">20</property>
+		<property name="initialPoolSize">100</property>
+		<property name="minPoolSize">50</property>
+		<property name="maxPoolSize">100</property>
+		<!--最大空闲时间，10秒内未使用则连接被丢弃。若为0则永不丢弃。默认值: 0 -->   
+        <property name="maxIdleTime">10</property>  
+	</named-config>
+</c3p0-config>
+
